@@ -28,6 +28,7 @@ public class AuthService {
         String token = jwtService.getToken(user);
         return AuthResponse.builder()
             .token(token)
+            .result(true)
             .build();
     }
 
@@ -42,6 +43,7 @@ public class AuthService {
 
         return AuthResponse.builder()
         .token(jwtService.getToken(user))
+        .result(true)
         .build();
     }
 

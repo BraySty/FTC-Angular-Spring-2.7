@@ -36,8 +36,8 @@ public class JwtService {
      * @return Regresa el token como String.
      */
     private String getToken(Map<String,Object> extraClaims, UserDetails user) {
-        extraClaims.put("fecha1", new Date(System.currentTimeMillis()).toString());
-        extraClaims.put("fecha2", new Date(System.currentTimeMillis()).toString());
+        extraClaims.put("role", user.getAuthorities());
+        extraClaims.put("username", user.getUsername());
         return Jwts
             .builder()
             .setClaims(extraClaims)

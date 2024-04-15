@@ -1,5 +1,6 @@
 package com.ftc.spring.api.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,15 @@ public class UsuarioService {
 			return new ResponseEntity<>(posibleUsuario.get(), HttpStatus.OK);
 		} else { // Que pasa si no existe
 			return new ResponseEntity<>(new Mensaje(userEmailMsg + correoUsuario + " no existe"), HttpStatus.NOT_FOUND);
+		}
+    }
+
+	public ResponseEntity<?> read() {
+        List<Usuario> posibleUsuario = repo.findAll();
+		if (!posibleUsuario.isEmpty()) {
+			return new ResponseEntity<>(posibleUsuario, HttpStatus.OK);
+		} else { // Que pasa si no existe
+			return new ResponseEntity<>(new Mensaje("No hay ningun usuario."), HttpStatus.NOT_FOUND);
 		}
     }
 
