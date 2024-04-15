@@ -3,24 +3,24 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
+export class RegisterComponent {
 
-export class LoginComponent {
+  registerObj: Register;
 
-  loginObj: Login;
-
+  users: any[] = [];
   constructor(private http: HttpClient, private router: Router) {
-    this.loginObj = new Login();
+    this.registerObj = new Register()
   }
 
-  OnLogin() {
+  OnRegister() {
     debugger;
     const headers = new HttpHeaders();
-    const body = {userName: this.loginObj.nombre, password: this.loginObj.password}
-    this.http.post<any>("http://localhost:8100/api/v1/auth/login", body, { headers }).subscribe((res:any)=>{
+    const body = { userName: this.registerObj.nombre, correo: this.registerObj.correo, password: this.registerObj.password }
+    this.http.post<any>("http://localhost:8100/api/v1/auth/register", body, { headers }).subscribe((res: any) => {
       if (res.result) {
         alert("Login Success");
         localStorage.setItem("token", res.token)
@@ -35,13 +35,15 @@ export class LoginComponent {
 
 }
 
-export class Login {
+export class Register {
 
   nombre: string;
-  password:string;
+  correo: string;
+  password: string;
 
   constructor() {
     this.nombre = "";
+    this.correo = "";
     this.password = "";
   }
 

@@ -2,11 +2,16 @@
 <br>
 <br>
 <br>
-<div>
-    <br>
-    Nombre: <br><input type="text" [(ngModel)]="nombre"><br>
-    Email: <br><input type="text" [(ngModel)]="email"><br>
-    Contraseña: <br><input type="password" [(ngModel)]="password">
-    <br><br>
-    
+<div class="h-screen flex items-center justify-center">
+    <form class="shadow-md rounder-md p-5 bg-white w-1/6">
+        <div class="py-4">
+            <h2 class="font-bold py-2">
+                Inicie sesion.
+            </h2>
+        </div>
+        <input type="text" name="nombre " [(ngModel)]="loginObj.nombre" placeholder="Nombre">
+        <br>
+        <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Contraseña">
+    </form>
+    <input type="button" value="Dale!" (click)="OnLogin()">
 </div>
