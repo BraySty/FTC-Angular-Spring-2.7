@@ -1,6 +1,7 @@
 package com.ftc.spring.api.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,8 @@ public class UsuarioController {
 	ResponseEntity<Mensaje> create(@RequestBody Usuario usuario) {
 		return usuarioService.save(usuario);
 	}
-
+	
+	@PreAuthorize("hasAuthority('USER')")
 	@GetMapping("/users") 
 	ResponseEntity<?> read() {
 		return usuarioService.read();
